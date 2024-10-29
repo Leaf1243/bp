@@ -21,17 +21,17 @@
 
  if (isNaN(systolic) || isNaN(diastolic)) {
  result = '両方の値を正しく入力してください。';
- } else if (systolic <100 && diastolic <60) {
+ } else if (systolic <=100 && diastolic <=60) {
  result = '低血圧です。';
  } else if (systolic <120 && diastolic <80) {
  result = '正常血圧です。';
  } else if (systolic >=120 && systolic <130 && diastolic <80) {
  result = '正常高値血圧です。';
- } else if ((systolic >=130 && systolic <=139 && diastolic >=80 &&diastolic <=89) || (diastolic >=80 && diastolic <=89)) {
+ } else if ((systolic >=130 && systolic <=139 && diastolic >=80 &&diastolic <=89) || (diastolic >=80 && diastolic <=89) || (systolic >=130 && systolic <=139) {
 result = "高値血圧です。"
-} else if ((systolic >=140 && systolic <159) || (systolic <=140 && diastolic >=159 && diastolic >=90 && diastolic <=99)) {
+} else if ((systolic >=140 && systolic <159) || (systolic <=140 && diastolic >=159 && diastolic >=90 && diastolic <=99) || (diastolic >=90 && diastolic <=99) {
  result = '一度高血圧です。';
- } else if (systolic >=160 && systolic <180 || (diastolic >=100 && diastolic <=109)) {
+ } else if ((systolic >=160 && systolic <180) || (diastolic >=100 && diastolic <=109) || (systolic >=160 && systolic <180) && diastolic >=100 && diastolic <=109) {
  result = '二度高血圧です。';
  } else if (systolic >=180 || diastolic >=110) {
  result = '三度高血圧です。';
