@@ -6,6 +6,7 @@
 </head>
 <body>
  <h1>血圧判定</h1>
+ <h2>診察室血圧の基準で判定しています</h2>
  <label for="systolic">収縮期血圧 (上): </label>
  <input type="number" id="systolic"><br>
  <label for="diastolic">拡張期血圧 (下): </label>
@@ -26,11 +27,11 @@
  } else if (systolic <120 && diastolic <80) {
  result = '正常血圧です。';
  } else if (systolic >=180 || diastolic >=110) {
- result = '三度高血圧です。';
+ result = 'Ⅲ度高血圧です。';
  } else if ((systolic >=160 && systolic <=179) || (diastolic >=100 && diastolic <=109) || (systolic >=160 && systolic <=179 && diastolic >=100 && diastolic <=109)) {
- result = '二度高血圧です。';
+ result = 'Ⅱ度高血圧です。';
  } else if ((systolic >=140 && systolic <159) || (systolic <=140 && systolic <159 && diastolic >=90 && diastolic >=99) || (diastolic >=90 && diastolic <=99)) {
- result = '一度高血圧です。';
+ result = 'Ⅰ度高血圧です。';
  } else if ((systolic >=130 && systolic <=139 && diastolic >=80 && diastolic <=89) || (diastolic >=80 && diastolic <=89) || (systolic >=130 && systolic <=139)) {
 result = "高値血圧です。"
 } else if (systolic >=120 && systolic <=129 && diastolic <80) {
