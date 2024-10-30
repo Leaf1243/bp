@@ -21,7 +21,7 @@
 
  if (isNaN(systolic) || isNaN(diastolic)) {
  result = '両方の値を正しく入力してください。';
- } else if (systolic <=100 && diastolic <=60) {
+ } else if (systolic <=100 || diastolic <=60) {
  result = '低血圧です。';
  } else if (systolic <120 && diastolic <80) {
  result = '正常血圧です。';
@@ -40,31 +40,7 @@ result = "高値血圧です。"
  document.getElementById('result').innerText = result;
  }
  </script>
- <table>
-    <tr>
-        <th></th>
-        <th>収縮期血圧　～　拡張期血圧</th>
-    </tr>
-    <tr>
-        <th>低血圧</th>
-        <td>100以下　60以下</td>
-    </tr>
-    <tr>
-        <th>正常血圧</th>
-        <td>120以下　80以下</td>
-    </tr><tr>
-        <th>正常高値血圧</th>
-        <td>120～129　80以下</td>
-    </tr>
-    <tr>
-        <th>高値血圧</th>
-        <td>130～139　80～89</td>
-    </tr>
-  <tr>
-        <th>一度高血圧</th>
-        <td>140～159　90～99</td>
-    </tr>
- </table>
+  <figure><img src="picture.img" alt=""></figure>
  <video src="血圧.mp4" controls></video>
 </body>
 </html>
