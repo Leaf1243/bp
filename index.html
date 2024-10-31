@@ -41,6 +41,44 @@ result = "高値血圧です。"
 
  document.getElementById('result').innerText = result;
  }
+  const ctx = document.getElementById('bloodPressureChart').getContext('2d');
+            const chart = new Chart(ctx, {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: '血圧データ',
+                        data: [{
+                            x: diastolic,
+                            y: systolic
+                        }],
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                        radius: 10
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: '拡張期血圧 (mmHg)'
+                            },
+                            min: 0, // x軸の最小値
+                            max: 200 // x軸の最大値
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: '収縮期血圧 (mmHg)'
+                            },
+                            min: 0, // y軸の最小値
+                            max: 200 // y軸の最大値
+                        }
+                    }
+                }
+            });
+            // グラフを表示
+            document.getElementById('bloodPressureChart').style.display = 'block';
+        }
  </script>
   <figure><img src="picture.png" alt=""></figure>
  <video src="血圧.mp4" controls></video>
