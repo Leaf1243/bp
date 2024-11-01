@@ -1,22 +1,30 @@
-<html lang="ja">
-<head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>血圧判定</title>
-  <link rel="stylesheet" href="style.css">
+<!DOCTYPE html>  
+<html lang="ja">  
+<head>  
+ <meta charset="UTF-8">  
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+ <title>血圧判定</title>  
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  
+ <style>  
+   canvas {  
+     max-width: 600px;  
+     margin: 20px auto;  
+   }  
+ </style>
+ <link rel="stylesheet" href="style.css">
 </head>
 <body>
- <h1>血圧判定</h1>
- <h2>診察室血圧の基準で判定しています</h2>
- <label for="systolic">収縮期血圧 (上): </label>
- <input type="number" id="systolic"><br>
- <label for="diastolic">拡張期血圧 (下): </label>
- <input type="number" id="diastolic"><br>
- <button onclick="checkBloodPressure()">判定する</button>
- <h2 id="result"></h2>
+ <h1>血圧判定</h1>  
+ <label for="systolic">収縮期血圧 (上): </label>  
+ <input type="number" id="systolic"><br>  
+ <label for="diastolic">拡張期血圧 (下): </label>  
+ <input type="number" id="diastolic"><br>  
+ <button onclick="checkBloodPressure()">判定する</button>  
+ <h2 id="result"></h2>  
+ <canvas id="bloodPressureChart" style="display: none;"></canvas>  
 
  <script>
- function checkBloodPressure() {
+   function checkBloodPressure() {
  const systolic = parseInt(document.getElementById('systolic').value);
  const diastolic = parseInt(document.getElementById('diastolic').value);
  let result = '';
@@ -25,8 +33,6 @@
  result = '両方の値を正しく入力してください。';
  } else if (systolic <=100 || diastolic <=60) {
  result = '低血圧です。';
- } else if (systolic <120 && diastolic <80) {
- result = '正常血圧です。';
  } else if (systolic >=180 || diastolic >=110) {
  result = 'Ⅲ度高血圧です。';
  } else if ((systolic >=160 && systolic <=179) || (diastolic >=100 && diastolic <=109) || (systolic >=160 && systolic <=179 && diastolic >=100 && diastolic <=109)) {
@@ -37,10 +43,13 @@
 result = "高値血圧です。"
 } else if (systolic >=120 && systolic <=129 && diastolic <80) {
  result = '正常高値血圧です。';
+ } else if (systolic <120 && diastolic <80) {
+ result = '正常血圧です。';
  }
- document.getElementById('result').innerText = result;}
 
-  function checkBloodPressure() {  
+ document.getElementById('result').innerText = result;
+ }
+ function checkBloodPressure() {  
      const systolic = parseInt(document.getElementById('systolic').value);  
      const diastolic = parseInt(document.getElementById('diastolic').value);  
      let result = '';  
@@ -68,48 +77,49 @@ result = "高値血圧です。"
          result = '正常血圧です。';  
      }  
 
-     document.getElementById('result').innerText = result;
-   
-     const ctx = document.getElementById('bloodPressureChart').getContext('2d');
-            const chart = new Chart(ctx, {
-                type: 'scatter', // 散布図を指定
-                data: {
-                    datasets: [{
-                        label: '血圧データ',
-                        data: [{
-                            x: diastolic,
-                            y: systolic
-                        }],
-                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
-                        radius: 10
-                    }]
-                },
-                options: {
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: '拡張期血圧 (mmHg)'
+     document.getElementById('result').innerText = result;  
+
+     const ctx = document.getElementById('bloodPressureChart').getContext('2d');  
+            const chart = new Chart(ctx, {  
+                type: 'scatter', // 散布図を指定  
+                data: {  
+                    datasets: [{  
+                        label: '血圧データ',  
+                        data: [{  
+                            x: diastolic,  
+                            y: systolic  
+                        }],  
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',  
+                        radius: 10  
+                    }]  
+                },  
+                options: {  
+                    scales: {  
+                        x: {  
+                            title: {  
+                                display: true,  
+                                text: '拡張期血圧 (mmHg)'  
                             },  
-                            min: 0, // x軸の最小値
-                            max: 200 // x軸の最大値
-                        },
-                        y: {
-                            title: {
-                                display: true,
-                                text: '収縮期血圧 (mmHg)'
+                            min: 0, // x軸の最小値  
+                            max: 200 // x軸の最大値  
+                        },  
+                        y: {  
+                            title: {  
+                                display: true,  
+                                text: '収縮期血圧 (mmHg)'  
                             },  
-                            min: 0, // y軸の最小値
-                            max: 200 // y軸の最大値
-                        }
-                    }
-                }
-            });
-            // グラフ表示  
+                            min: 0, // y軸の最小値  
+                            max: 200 // y軸の最大値  
+                        }  
+                    }  
+                }  
+            });  
+
+            // グラフを表示  
             document.getElementById('bloodPressureChart').style.display = 'block';  
         }
  </script>  
-  <figure><img src="picture.png" alt=""></figure>
- <video src="血圧.mp4" controls></video>
+ <figure class="picture"><img src="picture.png" alt=""></figure>
+ <video src="血圧.mp4" controls class="video"></video>
 </body>
 </html>
