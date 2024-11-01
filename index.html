@@ -38,11 +38,41 @@ result = "高値血圧です。"
 } else if (systolic >=120 && systolic <=129 && diastolic <80) {
  result = '正常高値血圧です。';
  }
-
  document.getElementById('result').innerText = result;
-  const ctx = document.getElementById('bloodPressureChart').getContext('2d');
+
+  function checkBloodPressure() {  
+     const systolic = parseInt(document.getElementById('systolic').value);  
+     const diastolic = parseInt(document.getElementById('diastolic').value);  
+     let result = '';  
+
+     if (isNaN(systolic) || isNaN(diastolic)) {  
+         result = '両方の値を正しく入力してください。';  
+         document.getElementById('result').innerText = result;  
+         return;  
+     }  
+
+     // 血圧の状態を判定  
+     if (systolic <= 100 || diastolic <= 60) {  
+         result = '低血圧です。';  
+     } else if (systolic >= 180 || diastolic >= 110) {  
+         result = 'Ⅲ度高血圧です。';  
+     } else if ((systolic >= 160 && systolic <= 179) || (diastolic >= 100 && diastolic <= 109)) {  
+         result = 'Ⅱ度高血圧です。';  
+     } else if ((systolic >= 140 && systolic <= 159) || (diastolic >= 90 && diastolic <= 99)) {  
+         result = 'Ⅰ度高血圧です。';  
+     } else if ((systolic >= 130 && systolic <= 139 && diastolic >= 80 && diastolic <= 89)) {  
+         result = "高値血圧です。";  
+     } else if (systolic >= 120 && systolic <= 129 && diastolic < 80) {  
+         result = '正常高値血圧です。';  
+     } else if (systolic < 120 && diastolic < 80) {  
+         result = '正常血圧です。';  
+     }  
+
+     document.getElementById('result').innerText = result;
+   
+     const ctx = document.getElementById('bloodPressureChart').getContext('2d');
             const chart = new Chart(ctx, {
-                type: 'scatter',
+                type: 'scatter', // 散布図を指定
                 data: {
                     datasets: [{
                         label: '血圧データ',
@@ -60,7 +90,7 @@ result = "高値血圧です。"
                             title: {
                                 display: true,
                                 text: '拡張期血圧 (mmHg)'
-                            },
+                            },  
                             min: 0, // x軸の最小値
                             max: 200 // x軸の最大値
                         },
@@ -68,17 +98,17 @@ result = "高値血圧です。"
                             title: {
                                 display: true,
                                 text: '収縮期血圧 (mmHg)'
-                            },
+                            },  
                             min: 0, // y軸の最小値
                             max: 200 // y軸の最大値
                         }
                     }
                 }
             });
-            // グラフを表示
-            document.getElementById('bloodPressureChart').style.display = 'block';
+            // グラフ表示  
+            document.getElementById('bloodPressureChart').style.display = 'block';  
         }
- </script>
+ </script>  
   <figure><img src="picture.png" alt=""></figure>
  <video src="血圧.mp4" controls></video>
 </body>
